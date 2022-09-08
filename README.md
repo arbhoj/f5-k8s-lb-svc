@@ -90,7 +90,7 @@ helm repo add f5-ipam-stable https://f5networks.github.io/f5-ipam-controller/hel
 ##### - Create values yaml
 
 ```
-export RANGE='{"ingress":"172.16.1.1-172.16.1.5"}'
+export RANGE='{"ingress":"144.217.53.168-144.217.53.169"}'
 cat <<EOF > f5-ipam-${CLUSTER_NAME}-values.yaml
 rbac:
   create: true
@@ -182,7 +182,7 @@ export F5_PASSWD=f5-password
 ### Step 2: Deploy F5 IPAM Controller (FIC)
 ```
 export CLUSTER_NAME=cluster-name
-export RANGE='{"ingress":"172.16.1.1-172.16.1.5"}'
+export RANGE='{"ingress":"144.217.53.168-144.217.53.169"}'
 
 # Run script to generate ClusterResourceSet manifest to deploy F5 FIC
 . ./capi-package-f5-ipam-controller.sh
