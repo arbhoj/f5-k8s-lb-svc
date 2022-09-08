@@ -39,7 +39,7 @@ helm repo add f5-stable https://f5networks.github.io/charts/stable
 ```
 export BIG_IP_URL=https://big-ip-host
 export BIG_IP_PARTITION=big-ip-partition
-export CLUSTER_NAME=dkp-cluster-name
+export CLUSTER_NAME=cluster-name
 
 cat <<EOF > f5-${CLUSTER_NAME}-values.yaml
 bigip_login_secret: f5-bigip-ctlr-login
