@@ -198,6 +198,9 @@ kubectl create -f *
 ```
 This will deploy the cluster along with the F5 controllers fully configured
 
+<br/>
+<br/>
+
 ## Test
 
 Once the cluster is deployed successfully test by deploying an nginx service
@@ -235,3 +238,6 @@ NAME         TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)        AGE
 kubernetes   ClusterIP      10.96.0.1       <none>           443/TCP        6d21h
 nginx        LoadBalancer   10.104.32.108   144.217.53.169   80:31444/TCP   34s
 ```
+
+Now login to F5 portal and verify
+![F5 Portal](./F5-Auto.png)
