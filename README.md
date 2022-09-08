@@ -164,6 +164,8 @@ If not already done generate CAPI cluster manifest.
 
 <br/>
 
+>Note: Ensure that KUBECONFIG is pointing to the bootstrap/management cluster that is managing the lifecycle of the target cluster to which the F5 controllers are being deployed
+
 ```
 export CLUSTER_NAME=cluster-name
 export BIG_IP_URL=https://big-ip-host
@@ -193,4 +195,43 @@ Now deploy the `f5-cluster-resoureset-${CLUSTER_NAME}.yaml` and ``f5-ipam-cluste
 e.g.
 ```
 kubectl create -f *
+```
+This will deploy the cluster along with the F5 controllers fully configured
+
+## Test
+
+Once the cluster is deployed successfully test by deploying an nginx service
+
+Set KUBECONFIG to point to the target managed cluster where the F5 controllers where deployed.
+> If using [DKP](https://docs.d2iq.com/dkp/latest/dkp-get-kubeconfig) the kubeconfig of the cluster can be retrieved by using the following command
+
+```
+dkp get kubeconfig -c ${CLUSTER_NAME} > ${CLUSTER_NAME}.conf
+
+#Set KUBECONFIG
+export KUBECONFIG=$(pwd)/${CLUSTER_NAME}.conf
+```
+
+Now deploy the test service
+
+```
+kubectl create deploy nginx --image nginx:alpine
+kubectl create service loadbalancer nginx --tcp=80:80
+```
+
+- Verify
+
+```
+kubectl get svc nginx
+
+kubectl create service loadbalancer nginx --tcp=80:80 --dry-run=client -o json | kubectl patch -f - --local -p '{"metadata": {"annotations": {"cis.f5.com/ipamLabel": "ingress", "cis.f5.com/health": "{\"interval\": 10, \"timeout\": 31}"}}}' --dry-run=client -o yaml | kubectl apply -f -
+```
+
+Sample Output
+
+```
+k get svc
+NAME         TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)        AGE
+kubernetes   ClusterIP      10.96.0.1       <none>           443/TCP        6d21h
+nginx        LoadBalancer   10.104.32.108   144.217.53.169   80:31444/TCP   34s
 ```
