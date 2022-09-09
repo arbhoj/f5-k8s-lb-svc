@@ -219,7 +219,7 @@ Now deploy the test service
 
 ```
 kubectl create deploy nginx --image nginx:alpine
-kubectl create service loadbalancer nginx --tcp=80:80
+kubectl create service loadbalancer nginx --tcp=80:80 --dry-run=client -o json | kubectl patch -f - --local -p '{"metadata": {"annotations": {"cis.f5.com/ipamLabel": "ingress", "cis.f5.com/health": "{\"interval\": 10, \"timeout\": 31}"}}}' --dry-run=client -o yaml | kubectl apply -f -
 ```
 
 - Verify
@@ -227,7 +227,6 @@ kubectl create service loadbalancer nginx --tcp=80:80
 ```
 kubectl get svc nginx
 
-kubectl create service loadbalancer nginx --tcp=80:80 --dry-run=client -o json | kubectl patch -f - --local -p '{"metadata": {"annotations": {"cis.f5.com/ipamLabel": "ingress", "cis.f5.com/health": "{\"interval\": 10, \"timeout\": 31}"}}}' --dry-run=client -o yaml | kubectl apply -f -
 ```
 
 Sample Output
