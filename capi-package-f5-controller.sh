@@ -47,7 +47,7 @@ spec:
 EOF
 
 # Create F5 Deployment Configmap and inject that into ClusterResourceSet manifest file
-helm template -f f5-${CLUSTER_NAME}-values.yaml \
+helm template --include-crds -f f5-${CLUSTER_NAME}-values.yaml \
 f5ctlr f5-stable/f5-bigip-ctlr --version 0.0.21| \
 sed -e '/# Source/d' | \
 sed 's/[[:blank:]]*$//' > f5-cm.yaml && \
