@@ -154,7 +154,7 @@ Create a directory with the name of the cluster and move to that directory so th
 
 ```
 export CLUSTER_NAME=cluster-name
-mkdir $CLUSTER_NAME && cd CLUSTER_NAME
+mkdir $CLUSTER_NAME && cd $CLUSTER_NAME
 ```
 
 If not already done generate CAPI cluster manifest.
