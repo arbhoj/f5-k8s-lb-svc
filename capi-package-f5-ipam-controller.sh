@@ -67,4 +67,5 @@ EOF
 
 #Convert to a configmap and include in the ClusterResourceSet
 kubectl create cm f5-ipam-config-${CLUSTER_NAME} --from-file=custom-resources.yaml=f5-ipam-cm.yaml --dry-run=client -o yaml >>f5-ipam-cluster-resoureset-${CLUSTER_NAME}.yaml 
-rm -f f5-ipam-cm.yaml 
+rm -f f5-ipam-cm.yaml
+rm -f f5-ipam-${CLUSTER_NAME}-values.yaml 

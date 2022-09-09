@@ -54,4 +54,5 @@ sed 's/[[:blank:]]*$//' > f5-cm.yaml && \
 echo "---" >> f5-cm.yaml && \
 kubectl create secret generic f5-bigip-ctlr-login -n kube-system --from-literal=username=${F5_USER} --from-literal=password=${F5_PASSWD} --dry-run=client -o yaml >> f5-cm.yaml && \
 kubectl create cm f5-config-${CLUSTER_NAME} --from-file=custom-resources.yaml=f5-cm.yaml --dry-run=client -o yaml >>f5-cluster-resoureset-${CLUSTER_NAME}.yaml  && \
-rm f5-cm.yaml 
+rm f5-cm.yaml
+rm f5-${CLUSTER_NAME}-values.yaml 

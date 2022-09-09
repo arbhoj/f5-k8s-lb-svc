@@ -194,7 +194,7 @@ Now deploy the `f5-cluster-resoureset-${CLUSTER_NAME}.yaml` and ``f5-ipam-cluste
 
 e.g.
 ```
-kubectl create -f *
+kubectl create -f .
 ```
 This will deploy the cluster along with the F5 controllers fully configured
 
@@ -241,3 +241,8 @@ nginx        LoadBalancer   10.104.32.108   144.217.53.169   80:31444/TCP   34s
 
 Now login to F5 portal and verify
 ![F5 Portal](./F5-Auto.png)
+
+Test Service via Loadbalancer VIP (i.e. using the value of the `EXTERNAL-IP` field)
+```
+curl http://144.217.53.169 #This should respond with the nginx default page
+```
