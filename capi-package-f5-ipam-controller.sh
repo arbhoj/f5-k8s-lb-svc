@@ -43,11 +43,8 @@ spec:
 ---
 EOF
 
-# Get IPAM CRD
-curl -s https://raw.githubusercontent.com/F5Networks/f5-ipam-controller/main/docs/_static/schemas/ipam_schema.yaml > f5-ipam-cm.yaml && \
-
 # Generate manifests from helm chart
-helm template -f f5-ipam-${CLUSTER_NAME}-values.yaml f5-ipam f5-ipam-stable/f5-ipam-controller --version 0.0.1 | sed -e '/# Source/d' | sed 's/[[:blank:]]*$//' >> f5-ipam-cm.yaml 
+helm template -f f5-ipam-${CLUSTER_NAME}-values.yaml f5-ipam f5-ipam-stable/f5-ipam-controller --version 0.0.1 | sed -e '/# Source/d' | sed 's/[[:blank:]]*$//' > f5-ipam-cm.yaml 
 
 # Create manifest for pvc
 cat <<EOF >> f5-ipam-cm.yaml 
