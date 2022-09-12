@@ -136,9 +136,6 @@ spec:
       storage: 0.1Gi
 EOF
 
-# Install
-kubectl create -f https://raw.githubusercontent.com/F5Networks/f5-ipam-controller/main/docs/_static/schemas/ipam_schema.yaml
-
 helm install -f f5-ipam-${CLUSTER_NAME}-values.yaml f5-ipam  f5-ipam-stable/f5-ipam-controller --version 0.0.1
 ```
 <br/>
