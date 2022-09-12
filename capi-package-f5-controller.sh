@@ -119,7 +119,7 @@ EOF
 helm template --include-crds -f f5-${CLUSTER_NAME}-values.yaml \
 f5ctlr f5-stable/f5-bigip-ctlr --version 0.0.21| \
 sed -e '/# Source/d' | \
-sed 's/[[:blank:]]*$//' > f5-cm.yaml && \
+sed 's/[[:blank:]]*$//' >> f5-cm.yaml && \
 echo "---" >> f5-cm.yaml && \
 kubectl create secret generic f5-bigip-ctlr-login -n kube-system --from-literal=username=${F5_USER} --from-literal=password=${F5_PASSWD} --dry-run=client -o yaml >> f5-cm.yaml && \
 kubectl create cm f5-config-${CLUSTER_NAME} --from-file=custom-resources.yaml=f5-cm.yaml --dry-run=client -o yaml >>f5-cluster-resoureset-${CLUSTER_NAME}.yaml  && \
