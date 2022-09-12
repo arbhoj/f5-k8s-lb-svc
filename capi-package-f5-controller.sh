@@ -47,7 +47,7 @@ spec:
 EOF
 
 # Hack. helm template does not install the ipam CRD and that breaks the integration
-cat <<EOF > f5-cm.yaml && \
+cat <<EOF > f5-cm.yaml
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
