@@ -154,6 +154,12 @@ export CLUSTER_NAME=cluster-name
 mkdir $CLUSTER_NAME && cd $CLUSTER_NAME
 ```
 
+Clone this repository into that directory
+
+```
+git clone https://github.com/arbhoj/f5-k8s-lb-svc.git
+```
+
 If not already done generate CAPI cluster manifest.
 >Hint: Use [DKP](https://docs.d2iq.com/dkp/latest/infrastructure-quick-start-guides) to easily generate one  
 
@@ -171,7 +177,7 @@ export F5_USER=f5-user
 export F5_PASSWD=f5-password
 
 # Run script to generate ClusterResourceSet manifest to deploy F5 CIS
-. ./capi-package-f5-controller.sh
+. f5-k8s-lb-svc/capi-package-f5-controller.sh
 
 ```
 >The above will generate `f5-cluster-resoureset-${CLUSTER_NAME}.yaml`
@@ -182,7 +188,7 @@ export CLUSTER_NAME=cluster-name
 export RANGE='{"ingress":"144.217.53.168-144.217.53.169"}'
 
 # Run script to generate ClusterResourceSet manifest to deploy F5 FIC
-. ./capi-package-f5-ipam-controller.sh
+. f5-k8s-lb-svc/capi-package-f5-ipam-controller.sh
 ```
 
 >The above will generate `f5-ipam-cluster-resoureset-${CLUSTER_NAME}.yaml`
