@@ -90,7 +90,8 @@ helm repo add f5-ipam-stable https://f5networks.github.io/f5-ipam-controller/hel
 ##### - Create values yaml
 
 ```
-export RANGE='{"ingress":"144.217.53.168-144.217.53.169"}'
+export RANGE='{"ingress":"144.217.53.168-144.217.53.169"}' 
+#Note the name of the range label here as the service must be annotated with the same to bind the service with a defined range. e.g. `cis.f5.com/ipamLabel: ingress`. There can be multiple ranges defined, identified by their label.
 cat <<EOF > f5-ipam-${CLUSTER_NAME}-values.yaml
 rbac:
   create: true
@@ -186,6 +187,7 @@ export F5_PASSWD=f5-password
 ```
 export CLUSTER_NAME=cluster-name
 export RANGE='{"ingress":"144.217.53.168-144.217.53.169"}'
+#Note the name of the range label here as the service must be annotated with the same to bind the service with a defined range. e.g. `cis.f5.com/ipamLabel: ingress`. There can be multiple ranges defined, identified by their label.
 
 # Run script to generate ClusterResourceSet manifest to deploy F5 FIC
 . f5-k8s-lb-svc/capi-package-f5-ipam-controller.sh
@@ -248,3 +250,9 @@ Test Service via Loadbalancer VIP (i.e. using the value of the `EXTERNAL-IP` fie
 ```
 curl http://144.217.53.169 #This should respond with the nginx default page
 ```
+
+> For a service of type LoadBalancer to bind to a given IPAM range, annotate that service as shown below. Where `ingress` is the name of the label associated with the range to pick the IP from. This must match one of the ranges defined when deploying the F5 IPAM controller.
+> ```
+> cis.f5.com/ipamLabel: ingress
+> cis.f5.com/health: '{"interval": 10, "timeout": 31}'
+> ```
