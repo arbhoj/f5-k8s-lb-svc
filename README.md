@@ -3,7 +3,7 @@
 This project lists steps to tightly integrate F5 with an on-prem kubernetes cluster to provision services of type LoadBalancer 
 
 ## Requirements
-1. Pre-configured F5 BIG cluster 
+1. Pre-configured F5 BIG IP cluster 
 2. F5 Partition that will be managed by this automation along with credentials for a service account that has admin permissions for the given partition
 3. AS3 3.39 or newer installed on the F5 cluster
 4. IP's availble to be used as VIPs
