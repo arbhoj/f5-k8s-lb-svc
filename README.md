@@ -1,9 +1,9 @@
-# F5 Big IP and Kubernetes LB Service Integration
+# F5 BIG-IP and Kubernetes LB Service Integration
 
 This project lists steps to tightly integrate F5 with an on-prem kubernetes cluster to provision services of type LoadBalancer 
 
 ## Requirements
-1. Pre-configured F5 BIG IP cluster 
+1. Pre-configured F5 BIG-IP cluster 
 2. F5 Partition that will be managed by this automation along with credentials for a service account that has admin permissions for the given partition
 3. AS3 3.39 or newer installed on the F5 cluster
 4. IP's availble to be used as VIPs
@@ -18,14 +18,14 @@ This project lists steps to tightly integrate F5 with an on-prem kubernetes clus
 
 
 ## Steps
-Here are the steps to be performed for a kubernetes cluster that is to be integrated with F5 Big IP to provision services of type LoadBalancer. There are two options based on whether F5 controllers are to be directly deployed to the target cluster or deployed via ClusterResourceSets for a CAPI provisioned cluster either at cluter creation time or after the cluster has been deployed.
+Here are the steps to be performed for a kubernetes cluster that is to be integrated with F5 Big-IP to provision services of type LoadBalancer. There are two options based on whether F5 controllers are to be directly deployed to the target cluster or deployed via ClusterResourceSets for a CAPI provisioned cluster either at cluter creation time or after the cluster has been deployed.
 
 <br/>
 
 ### Option 1: Directly deploy F5 Controllers to a Kubernetes Cluster
 <br/>
 
-#### Step 1: Deploy F5 Big IP Container Ingress Services (CIS)
+#### Step 1: Deploy F5 BIG-IP Container Ingress Services (CIS)
 
 <br/>
 
@@ -164,7 +164,7 @@ git clone https://github.com/arbhoj/f5-k8s-lb-svc.git
 If not already done generate CAPI cluster manifest.
 >Hint: Use [DKP](https://docs.d2iq.com/dkp/latest/infrastructure-quick-start-guides) to easily generate one  
 
-#### Step 1: Deploy F5 Big IP Container Ingress Services (CIS)
+#### Step 1: Deploy F5 BIG-IP Container Ingress Services (CIS)
 
 <br/>
 
