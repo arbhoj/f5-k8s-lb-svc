@@ -18,11 +18,11 @@ This project lists steps to tightly integrate F5 with an on-prem kubernetes clus
 
 
 ## Steps
-Here are the steps to be performed for a kubernetes cluster that is to be integrated with F5 Big-IP to provision services of type LoadBalancer. There are two options based on whether F5 controllers are to be directly deployed to the target cluster or deployed via ClusterResourceSets for a CAPI provisioned cluster either at cluter creation time or after the cluster has been deployed.
+Here are the steps to be performed for a kubernetes cluster that is to be integrated with F5 Big-IP to provision services of type LoadBalancer. There are two options based on whether F5 CIS & FIC Controllers are to be directly deployed to the target cluster or deployed via ClusterResourceSets for a CAPI provisioned cluster either at cluter creation time or after the cluster has been deployed.
 
 <br/>
 
-### Option 1: Directly deploy F5 Controllers to a Kubernetes Cluster
+### Option 1: Directly deploy F5 CIS & FIC Controllers to a Kubernetes Cluster
 <br/>
 
 #### Step 1: Deploy F5 BIG-IP Container Ingress Services (CIS)
@@ -168,7 +168,7 @@ If not already done generate CAPI cluster manifest.
 
 <br/>
 
->Note: Ensure that KUBECONFIG is pointing to the bootstrap/management cluster that is managing the lifecycle of the target cluster to which the F5 controllers are being deployed
+>Note: Ensure that KUBECONFIG is pointing to the bootstrap/management cluster that is managing the lifecycle of the target cluster to which the F5 CIS & FIC Controllers are being deployed
 
 ```
 export CLUSTER_NAME=cluster-name
@@ -201,7 +201,7 @@ e.g.
 ```
 kubectl create -f .
 ```
-This will deploy the cluster along with the F5 controllers fully configured
+This will deploy the cluster along with the F5 CIS & FIC Controllers fully configured
 
 <br/>
 <br/>
@@ -210,7 +210,7 @@ This will deploy the cluster along with the F5 controllers fully configured
 
 Once the cluster is deployed successfully test by deploying an nginx service
 
-Set KUBECONFIG to point to the target managed cluster where the F5 controllers where deployed.
+Set KUBECONFIG to point to the target managed cluster where the F5 CIS & FIC Controllers where deployed.
 > If using [DKP](https://docs.d2iq.com/dkp/latest/dkp-get-kubeconfig) the kubeconfig of the cluster can be retrieved by using the following command
 
 ```
